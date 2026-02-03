@@ -15,4 +15,4 @@
 - Schéma SQL brouillon
 
 #### Notes / obstacles :
-Faire un document qui explique les outils utilisés comme un cheat sheet, ou un tuto. Et à la fin du projet ne pas oublier de partager sur linkedIn.
+Faire un document, qui explique les outils utilisés, comme un cheat sheet, ou un tuto. Et à la fin du projet ne pas oublier de partager sur linkedIn.
