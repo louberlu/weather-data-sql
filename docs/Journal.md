@@ -36,18 +36,36 @@ Il faudra répondre implicitement à :
 
 ### Jour 3 - 2026/02/05
 #### Tâches faites
-- Définir les tables
-- Choisir les types
-- Gérer les clés (primary / foreign)
+- Définition des entités (Weather, Location)
+- Choix des champs et des types
+- Identification des clés primaires et étrangères
+- Production du dictionnaire de données et du MLD
 
 #### Tâches à faire
-- Penser évolutivité minimale 
-- Définir le rythme de réception des informations (jour ou semaine)
-- Valider avec chatGPT
-- Implémenter le client API en Python
-- Gérer :
-    - clé API
-    - erreurs HTTP
-    - réponse vide ou invalide
+- Finaliser le schéma relationnel
+- Rédiger le fichier schema.sql
+- Compléter la section “Modèle de données” dans le README
+- Définir l’évolutivité minimale (fréquence de collecte)
+- Valider la fin de l’étape 2
+
+### Jour 4 - 2026/02/06
+#### Tâches faites
+- Finaliser le schéma relationnel
+
+#### Tâches à faire
+- Rédiger le fichier schema.sql
+- Compléter la section “Modèle de données” dans le README
+- Définir l’évolutivité minimale (fréquence de collecte)
+- Valider la fin de l’étape 2
+
+### Jour 5 - 2026/02/07
+#### Tâches faites
+- Rédiger le fichier schema.sql
+- Compléter la section “Modèle de données” dans le README
+
+#### Tâches à faire
+- Définir l’évolutivité minimale (fréquence de collecte)
+- Valider la fin de l’étape 2
 
 #### Notes / obstacles :
+Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et Contexte.
