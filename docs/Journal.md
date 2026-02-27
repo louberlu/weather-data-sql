@@ -68,4 +68,14 @@ Il faudra répondre implicitement à :
 - Valider la fin de l’étape 2
 
 #### Notes / obstacles :
-Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et Contexte.
+Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et Contexte. 
+
+### Jour 6 - 2026/02/20
+#### Tâches faites
+- Définir l’évolutivité minimale (fréquence de collecte)
+
+#### Tâches à faire
+- Valider la fin de l’étape 2
+- Faire les modifications éventuelles de la base de données pour refléter la décision de granularité
+- Créer les fonctions de collecte de données
+- Réfléchir à la transformation des données

@@ -1,0 +1,1 @@
+Pour répondre aux besoins actuels, il a été décidé d’interroger la météo toutes les heures afin de disposer d’un suivi complet tout au long de la journée. L’utilisation d’Airflow sera nécessaire pour automatiser et gérer cette fréquence de collecte.
