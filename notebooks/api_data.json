@@ -1,0 +1,44 @@
+{
+    "coord": {
+        "lon": 9.454,
+        "lat": 0.39
+    },
+    "weather": [
+        {
+            "id": 803,
+            "main": "Clouds",
+            "description": "broken clouds",
+            "icon": "04d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 301.02,
+        "feels_like": 304.09,
+        "temp_min": 301.02,
+        "temp_max": 301.02,
+        "pressure": 1007,
+        "humidity": 74,
+        "sea_level": 1007,
+        "grnd_level": 1006
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 4.18,
+        "deg": 247,
+        "gust": 3.77
+    },
+    "clouds": {
+        "all": 78
+    },
+    "dt": 1772208547,
+    "sys": {
+        "country": "GA",
+        "sunrise": 1772170319,
+        "sunset": 1772213895
+    },
+    "timezone": 3600,
+    "id": 2399697,
+    "name": "Libreville",
+    "cod": 200
+}

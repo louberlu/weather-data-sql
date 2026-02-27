@@ -75,7 +75,12 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 - Définir l’évolutivité minimale (fréquence de collecte)
 
 #### Tâches à faire
-- Valider la fin de l’étape 2
-- Faire les modifications éventuelles de la base de données pour refléter la décision de granularité
 - Créer les fonctions de collecte de données
 - Réfléchir à la transformation des données
+
+ ### Jour 7 - 2026/02/27
+ #### Tâches faites
+ - Créer la fonction de collecte dans le notebook
+ - Améliorer les performances de cette fonction
+ - Créer une pipeline de collecte de fichier json pour chaque heure (airflow)
+ - Tester la pipeline
