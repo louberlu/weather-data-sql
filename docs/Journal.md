@@ -78,9 +78,12 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 - Créer les fonctions de collecte de données
 - Réfléchir à la transformation des données
 
- ### Jour 7 - 2026/02/27
- #### Tâches faites
- - Créer la fonction de collecte dans le notebook
- - Améliorer les performances de cette fonction
- - Créer une pipeline de collecte de fichier json pour chaque heure (airflow)
- - Tester la pipeline
+### Jour 7 - 2026/02/27
+#### Tâches faites
+- Créer la fonction de collecte dans le notebook
+- Améliorer les performances de cette fonction
+- Créer une pipeline de collecte de fichier json pour chaque heure (airflow)
+- Tester la pipeline
+
+#### Notes / obstacles :
+- Lorsque l'on va passer à la création de fichier python, penser à créer un fichier qui contiendra les variables d'environnement. Ce fichier ne devra pas être uploader sur gitHub pour des raisons de sécurité. Y mettre l'API ainsi que les données de configuration de la BDD.
