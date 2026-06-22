@@ -81,9 +81,45 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 ### Jour 7 - 2026/02/27
 #### Tâches faites
 - Créer la fonction de collecte dans le notebook
+
+#### Tâches à faire
 - Améliorer les performances de cette fonction
 - Créer une pipeline de collecte de fichier json pour chaque heure (airflow)
 - Tester la pipeline
 
 #### Notes / obstacles :
 - Lorsque l'on va passer à la création de fichier python, penser à créer un fichier qui contiendra les variables d'environnement. Ce fichier ne devra pas être uploader sur gitHub pour des raisons de sécurité. Y mettre l'API ainsi que les données de configuration de la BDD.
+
+### Jour  - 2026/06/18
+#### Tâches faites
+- Explorer comment récupérer les fichiers JSON pour les déposer la base de données SQL
+
+#### Tâches à faire
+
+
+#### Notes / obstacles :
+- Penser à aller les commentaires dans le documents "Schema SQL.docx"
+
+### Jour  - 2026/06/19
+#### Tâches faites
+- Explorer l'utilisation de sqlalchimy
+
+#### Tâches à faire
+- Créer la base de données depuis python (le notebook)
+- Insérer à la main les données récupérées du fichier JSON
+- Créer une fonction qui va automatiser cette insertion
+
+#### Notes / obstacles :
+
+### Jour  - 2026/06/19
+#### Tâches faites
+- Créer les tables à partir du notebook en utilisant SQLAlchimy
+
+#### Tâches à faire
+- Gérer les exceptions
+- Faire des insertions
+- Semi-automatiser les insertions
+
+#### Notes / obstacles :
+- Il faudra regarder des tutoriels sur SQLAlchimy pour des possibilités d'amélioration de son utilisation
+- Ne pas s'attarder sur les détails car le projet peut-être améliorer à des dates ultérieures

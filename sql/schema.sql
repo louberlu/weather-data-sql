@@ -1,4 +1,4 @@
-CREATE TABLE location (
+CREATE TABLE locations (
     location_id SERIAL NOT NULL,
     country_name VARCHAR(100) NOT NULL,
     city VARCHAR(100) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE location (
         PRIMARY KEY (location_id)
 );
 
-CREATE TABLE weather (
+CREATE TABLE weathers (
     weather_id SERIAL NOT NULL,
     main VARCHAR(20) NOT NULL,
     description VARCHAR2 NOT NULL,
