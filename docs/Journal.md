@@ -90,7 +90,7 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 #### Notes / obstacles :
 - Lorsque l'on va passer à la création de fichier python, penser à créer un fichier qui contiendra les variables d'environnement. Ce fichier ne devra pas être uploader sur gitHub pour des raisons de sécurité. Y mettre l'API ainsi que les données de configuration de la BDD.
 
-### Jour  - 2026/06/18
+### Jour 8 - 2026/06/18
 #### Tâches faites
 - Explorer comment récupérer les fichiers JSON pour les déposer la base de données SQL
 
@@ -100,7 +100,7 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 #### Notes / obstacles :
 - Penser à aller les commentaires dans le documents "Schema SQL.docx"
 
-### Jour  - 2026/06/19
+### Jour 9 - 2026/06/19
 #### Tâches faites
 - Explorer l'utilisation de sqlalchimy
 
@@ -111,7 +111,7 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 
 #### Notes / obstacles :
 
-### Jour  - 2026/06/19
+### Jour 10 - 2026/06/19
 #### Tâches faites
 - Créer les tables à partir du notebook en utilisant SQLAlchimy
 
@@ -123,3 +123,17 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 #### Notes / obstacles :
 - Il faudra regarder des tutoriels sur SQLAlchimy pour des possibilités d'amélioration de son utilisation
 - Ne pas s'attarder sur les détails car le projet peut-être améliorer à des dates ultérieures
+
+### Jour 11 - 2026/06/23
+#### Tâches faites
+- Gérer les exceptions
+- Faire des insertions
+- Création de la fonction transformer
+
+#### Tâches à faire
+- Faire plusieurs insertions
+- Créer la fonction de dépôt
+- Ajouter d'autres automatisations
+
+#### Notes / obstacles :
+- Il y a une différence entre la fonction begin et connect, est que la première gère les commit avec with
