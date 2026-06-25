@@ -137,3 +137,18 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 
 #### Notes / obstacles :
 - Il y a une différence entre la fonction begin et connect, est que la première gère les commit avec with
+
+### Jour 12 - 2026/06/25
+#### Tâches faites
+- Faire plusieurs insertions
+- Créer la fonction de dépôt
+- Créer la classe WeatherPipeline
+
+#### Tâches à faire
+- Optimiser la classe WeatherPipeline
+- Tester la méthode villeId dans le notebook.
+- Rajouter la docstring
+- Tester chaque méthode de la classe
+- Tester la pipeline complète
+
+#### Notes / obstacles :
