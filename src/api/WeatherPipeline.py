@@ -9,6 +9,14 @@ from sqlalchemy import Sequence, Integer, TIMESTAMP
 from sqlalchemy import Float, String, MetaData, ForeignKey
 
 class WeatherPipeline:
+    """Pipeline pour collecter, transformer et déposer les données météorologiques dans une base de données PostgreSQL.
+
+    Raises:
+        Exception: _description_
+
+    Returns:
+        _type_: _description_
+    """
     cle_api = None
     host = None
     user = None
@@ -25,11 +33,16 @@ class WeatherPipeline:
     url_meteo = None
     url_geo = None
         
-    def __init__(self):
+    def __init__(self, path_env):
+        """Initialise le pipeline météo en chargeant les variables d'environnement et en configurant les connexions à la base de données.
+
+        Args:
+            path_env (str): Le fichier .env avec son chemin complet
+        """
         self.url_geo = "http://api.openweathermap.org/geo/1.0/direct"
         self.url_meteo = "https://api.openweathermap.org/data/2.5/weather"
         
-        load_dotenv(dotenv_path="../.env")
+        load_dotenv(dotenv_path=path_env)
         # Récupérer les variables d'environnement
         self.host = os.getenv("DB_HOST")
         self.user = os.getenv("DB_USER")
@@ -81,10 +94,12 @@ class WeatherPipeline:
             Column("location_id", None, ForeignKey("locations.location_id"), nullable=False)
         )
         
-        self.init_connextion()
+        self.init_connexion()
     
     def init_connexion(self) :
-        self.engine = create_engine(url_BDD)
+        """Initialise la connexion à la base de données.
+        """
+        self.engine = create_engine(self.url_BDD)
         try:
             with self.engine.connect() as connection:
                 connection.execute(text("SELECT 1"))
@@ -92,7 +107,9 @@ class WeatherPipeline:
         except Exception as e:
             print(f"Échec de la connexion à la base de données : {e}")
     
-    def init_table(self):        
+    def init_table(self):
+        """Initialise les tables dans la base de données.
+        """
         try :
             self.metadata_obj.create_all(self.engine)
             print(f"Les tables {self.tb_loc} et {self.tb_weath} ont été créé dans la base de donnée {self.base}.")
@@ -100,14 +117,25 @@ class WeatherPipeline:
             print(f"Échec de la création des tables : {e}")
     
     def init_nb_json_file(self):
+        """Initialise le compteur de fichiers JSON.
+        """
         conf = {
                 'nb_json_file' : 0
             }
             
-        with open("conf.json", "x") as json_file:
+        with open("conf.json", "w") as json_file:
             json.dump(conf, json_file, indent=4)
     
     def collecte(self, city, country_code):
+        """Collecte les données météorologiques pour une ville donnée.
+
+        Args:
+            city (str): Nom de la ville pour laquelle collecter les données météorologiques
+            country_code (str): Code du pays
+
+        Returns:
+            dict: Fichier JSON contenant les données météorologiques collectées
+        """
         # Appel API pour les coordonnées de la ville
         params_city = {
             'q': city+','+country_code,
@@ -116,12 +144,10 @@ class WeatherPipeline:
 
         r_city = requests.get(self.url_geo, params=params_city)
 
-        geo_city = [r_city.json()[0]['lat'], r_city.json()[0]['lon']]
-
         # Appel de l'API pour les informations météo d'une ville 
         p_weather_city = {
-            'lat': geo_city[0],
-            'lon': geo_city[1],
+            'lat': r_city.json()[0]['lat'],
+            'lon': r_city.json()[0]['lon'],
             'appid': self.cle_api
         }
         
@@ -155,6 +181,17 @@ class WeatherPipeline:
         return d_city
     
     def transformer(self, f_json, city, country, df_updated : pd.DataFrame | None = None) :
+        """Transforme les données météorologiques collectées.
+
+        Args:
+            f_json (dict): Fichier JSON contenant les données météorologiques collectées
+            city (str): Nom de la ville pour laquelle transformer les données
+            country (str): Nom du pays
+            df_updated (pd.DataFrame | None, optional): DataFrame mis à jour. Defaults to None.
+
+        Returns:
+            pd.DataFrame: DataFrame contenant les données météorologiques transformées
+        """
         df_weather = pd.read_json(f_json, orient="columns", typ="series")
         rain = None
         snow = None
@@ -202,25 +239,64 @@ class WeatherPipeline:
         
         return df
     
-    def villeId(self, city):
+    def ville_id(self, city):
+        """Récupère l'identifiant d'une ville dans la base de données.
+
+        Args:
+            city (str): Le nom de la ville dont on recherche l'id dans la base de données
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            int: L'identifiant de la ville
+        """
         try :
             with self.engine.connect() as connection:
-                s = select(text("SELECT * FROM locations WHERE city = :city")).params(city=city)
+                s = select(self.locations.c.location_id).where(self.locations.c.city == city)
                 result = connection.execute(s)
             line = result.fetchone();
             if line is not None and len(line) > 0:
                 return line[0]
             else:
                 print(f"La ville de '{city}' n'est pas présente dans la base")
+                raise Exception
         except Exception as e :
-                print(f"Échec de la sélection : {e}")
-                
+            print(f"Échec de la sélection : {e}")
+    
+    def ville_presente(self, city):
+        """Vérifie si une ville est présente dans la base de données.
+
+        Args:
+            city (Str): Nom de la ville à vérifier dans la base de données
+
+        Returns:
+            bool: True si la ville est présente, False sinon
+        """
+        try :
+            with self.engine.connect() as connection:
+                s = select(self.locations.c.location_id).where(self.locations.c.city == city)
+                result = connection.execute(s)
+            line = result.fetchone();
+            if line is not None :
+                return True
+            else:
+                return False
+        except Exception as e :
+            print(f"Échec de la sélection : {e}")
+
     def depot_sql(self, df):
+        """Cette méthode effectue les insertions dans les tables de la base de données.
+
+        Args:
+            df (DataFrame): Le dataFrame contenant les données météos devant être déposer 
+            dans la base de données
+        """
         # Insertion dans la table locations
         for i in range(len(df)):
             city = df.loc[i]['city']
             
-            if self.villeId(city) is None:
+            if not self.ville_presente(city):
                 try :
                     ins = self.locations.insert().values(
                         country_name = df.loc[i]["country_name"],
@@ -236,12 +312,12 @@ class WeatherPipeline:
                     with self.engine.begin() as connection:
                         print("...Insertion en cours...")
                         print(str(ins),"\n")
-                        resultat = connection.execute(ins)
+                        connection.execute(ins)
                     print(f"... Les données ont été inséré dans la table 'locations' de la base de donnée {self.base}")
                 except Exception as e :
                     print(f"Échec de l'insertion : {e}")
 
-            loc_id = self.villeId(city)
+            loc_id = self.ville_id(city)
 
             # Insertion dans la table weathers  
             try:
@@ -278,7 +354,7 @@ class WeatherPipeline:
                 with self.engine.begin() as connection:
                     print("...Insertion en cours...")
                     print("\n",str(ins),"\n")
-                    resultat = connection.execute(ins)
+                    connection.execute(ins)
                     
                 print(f"... Les données ont été inséré dans la table 'weathers' de la base de donnée {self.base}")
             except Exception as e :

@@ -146,9 +146,31 @@ Il faudra rajouter une section à l'avenir dans les projets, c'est Problème et 
 
 #### Tâches à faire
 - Optimiser la classe WeatherPipeline
-- Tester la méthode villeId dans le notebook.
+- Tester la méthode villeId dans le notebook
 - Rajouter la docstring
 - Tester chaque méthode de la classe
 - Tester la pipeline complète
 
 #### Notes / obstacles :
+
+### Jour 13 - 2026/06/26
+#### Tâches faites
+- Faire quelques optimisation de la classe WeatherPipeline
+- Tester la méthode villeId dans le notebook
+- Rajouter la méthode villePresente 
+- Commencer à rajouter la docstring
+
+#### Tâches à faire
+- Créer un environnement de développement
+- Télécharger les dépendances nécessaires : pandas, slqalchimy
+- Régler le problème de fichier dans la méthode collecte
+- Préciser l'exception qui est raise pour les sélections et insertions
+- Rajouter si nécessaire lors de la création du json compteur, un test pour vérifier si le fichier existe
+- Continuer de rajouter la docstring
+- Tester chaque méthode de la classe
+- Tester la pipeline complète
+
+#### Notes / obstacles :
+- J'ai remis la méthode villePresente que j'avais tout d'abord supprimer lors de l'optimisation, car séparer la sélection de l'id, et tester plus judicieux, quitte à ce qu'il y ait moins d'efficacité. 
+- Et, je ne ferais pas d'insertion en bulk à moins de régler la question de la clé étrangère location_id. Sinon, vaux mieux insérer une à une. Mais, si on part du principe que la classe ne gérera qu'une seule ville, dans ce cas, oui, c'est mieux d'insérer en bulk.
+- Il faudra penser à rendre privé certaines, voir toutes les variables de classes.
